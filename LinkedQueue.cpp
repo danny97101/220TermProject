@@ -4,34 +4,41 @@
 
 #include "LinkedQueue.h"
 
+//TODO: ADD COPY CONSTRUCTORS AND ASSIGNMENT OPERATORS ASAP
+
+template <class ItemType>
 LinkedQueue::LinkedQueue(){
-
+    this->first = nullptr;
+    this->last = nullptr;
 }
 
+template <class ItemType>
 LinkedQueue::~LinkedQueue(){
-
+    while (first != nullptr) {
+        LinkedNode<ItemType> temp = first->getNext();
+        delete first;
+        first = temp;
+    }
+    first = nullptr;
+    last = nullptr;
 }
 
-void LinkedQueue::enqueue(int item){
-
+template <class ItemType>
+void LinkedQueue::enqueue(ItemType item){
+    LinkedNode<ItemType>* next = new LinkedNode(item);
+    last->setNext(next);
 }
 
-int LinkedQueue::dequeue() {
-
+template <class ItemType>
+ItemType LinkedQueue::dequeue() {
+    ItemType item = first->getItem();
+    LinkedNode<ItemType> temp = first->getNext();
+    delete first;
+    first = temp;
+    return item;
 }
 
+template <class ItemType>
 bool LinkedQueue::isEmpty(){
-
-}
-
-long LinkedQueue::getTotalLinesRun(){
-
-}
-
-void LinkedQueue::resetTotalLinesRun(){
-
-}
-
-int LinkedQueue::calcSizeOf(){
-
+    return first == nullptr;
 }

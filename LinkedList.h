@@ -76,5 +76,7 @@ public:
     int calcSizeOf();
 };
 
+#include "LinkedList.cpp""
+
 
 #endif //INC_220TERMPROJECT_LINKEDLIST_H

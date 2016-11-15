@@ -15,7 +15,6 @@ private:
     LinkedNode<ItemType>* first;
     LinkedNode<ItemType>* last;
 
-    int totalLinesRun;
 
 public:
     LinkedQueue();
@@ -25,11 +24,10 @@ public:
     ItemType dequeue();
     bool isEmpty();
 
-    long getTotalLinesRun();
-    void resetTotalLinesRun();
-    int calcSizeOf();
 
 };
+
+#include "LinkedQueue.cpp"
 
 
 #endif //STACKSANDQUEUES_LINKEDQUEUE_H

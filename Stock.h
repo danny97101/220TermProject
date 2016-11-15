@@ -5,12 +5,21 @@
 #ifndef INC_220TERMPROJECT_STOCK_H
 #define INC_220TERMPROJECT_STOCK_H
 
+#include "Movie.h"
+#include "LinkedList.h"
+
 class Stock {
 
 private:
     LinkedList<Movie>* inventory;
+
 public:
+    Stock();
+    ~Stock();
+
     LinkedList<Movie>* getInventory();
+
+    void addToInventory(Movie& movie);
 
     void createOrder();
     void getDelivery();
