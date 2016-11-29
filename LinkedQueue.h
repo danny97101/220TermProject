@@ -5,11 +5,10 @@
 #ifndef STACKSANDQUEUES_LINKEDQUEUE_H
 #define STACKSANDQUEUES_LINKEDQUEUE_H
 
-#include "Queue.h"
 #include "LinkedNode.h"
 
 template <class ItemType>
-class LinkedQueue : public Queue<ItemType> {
+class LinkedQueue {
 
 private:
     LinkedNode<ItemType>* first;

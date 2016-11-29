@@ -19,8 +19,7 @@ Movie::Movie(std::string title, double price, int year, int inStock, int wantInS
     this->year = year;
     this->inStock = inStock;
     this->wantInStock = wantInStock;
-    //this->waitList = new LinkedQueue<std::string>();
-    this->waitList = nullptr;
+    this->waitList = new LinkedQueue<std::string>();
 }
 
 Movie::Movie(const Movie& movie) {
@@ -99,6 +98,11 @@ std::string Movie::removeFromWaitList() {
 
 void Movie::addToStock(int amount) {
     setInStock(getInStock() + amount);
+}
+
+std::string Movie::toString() {
+    std::string str = getTitle() + ", " + std::to_string(getYear()) + ", $" + std::to_string(getPrice()) + ", " + std::to_string(getInStock()) + " in stock, " + std::to_string(getWantInStock()) + " desired in stock."; //TODO: add waitlist
+    return str;
 }
 
 

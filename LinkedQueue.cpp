@@ -15,7 +15,7 @@ LinkedQueue<ItemType>::LinkedQueue(){
 template <class ItemType>
 LinkedQueue<ItemType>::~LinkedQueue(){
     while (first != nullptr) {
-        LinkedNode<ItemType> temp = first->getNext();
+        LinkedNode<ItemType>* temp = first->getNext();
         delete first;
         first = temp;
     }
@@ -32,7 +32,7 @@ void LinkedQueue<ItemType>::enqueue(ItemType item){
 template <class ItemType>
 ItemType LinkedQueue<ItemType>::dequeue() {
     ItemType item = first->getItem();
-    LinkedNode<ItemType> temp = first->getNext();
+    LinkedNode<ItemType>* temp = first->getNext();
     delete first;
     first = temp;
     return item;

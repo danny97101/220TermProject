@@ -21,6 +21,7 @@ public:
 
     void addToInventory(Movie& movie);
     void addToInventory();
+    void addToInventory(std::string title); //TODO
 
     void printInventory();
 
@@ -30,7 +31,7 @@ public:
     void createReturn();
     void shipReturn();
 
-    void sellItem();
+    void sellItem(std::string title);
 
     Movie* findMovie(std::string title);
 };

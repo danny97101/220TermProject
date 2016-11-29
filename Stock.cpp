@@ -68,8 +68,9 @@ void Stock::createOrder() {
         outputFile << current.getTitle() << std::endl << std::to_string(needed) << std::endl;
         }
     }
+        outputFile.close();
     }
-    outputFile.close();
+
 }
 
 void Stock::getDelivery() {
@@ -93,6 +94,42 @@ void Stock::getDelivery() {
 
 }
 
+void Stock::createReturn() {
+    std::ofstream outputFile("return.txt"); //TODO: test this eventually
+    if (outputFile.is_open()) {
+        for (int i = 0; i < inventory->size(); i++) {
+            Movie current = inventory->get(i);
+            int needed = current.getNeeded();
+            if (needed < 0) {
+                outputFile << current.getTitle() << std::endl << std::to_string(needed) << std::endl;
+            }
+        }
+        outputFile.close();
+    }
+
+}
+
+void Stock::shipReturn() {
+    std::ifstream input("return.txt");
+    std::string line;
+    Movie* movie = nullptr;
+    if (input.is_open()) {
+        int count = 0;
+        while (getline(input, line)) {
+            if (count%2 == 0) {
+                movie = findMovie(line);
+                if (movie == nullptr) {
+                    //TODO: error checking wooooo
+                }
+            } else {
+                movie->addToStock(std::stoi(line)); //TODO: error checking don't let instock be less than 0
+            }
+        }
+        input.close();
+    }
+}
+
+
 Movie* Stock::findMovie(std::string title) {
     for (int i = 0; i < inventory->size(); i++) { //TODO: binary search
         Movie current = inventory->get(i);
@@ -102,4 +139,11 @@ Movie* Stock::findMovie(std::string title) {
     }
     return nullptr;
 
+}
+
+void Stock::sellItem(std::string title) {
+    Movie* movie = findMovie(title);
+    if (movie != nullptr && movie->getInStock() > 0) {
+        movie->addToStock(-1);
+    }
 }

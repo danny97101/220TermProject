@@ -5,7 +5,7 @@
 #ifndef INC_220TERMPROJECT_MOVIE_H
 #define INC_220TERMPROJECT_MOVIE_H
 
-#include "Queue.h"
+#include "LinkedQueue.h"
 #include <iostream>
 
 class Movie {
@@ -16,9 +16,10 @@ private:
     int year;
     int inStock;
     int wantInStock;
-    Queue<std::string>* waitList;
+    LinkedQueue<std::string>* waitList;
 
 public:
+    static const double DEFAULT_PRICE = 10.99;
     Movie();
     Movie(std::string title, double price, int year, int inStock, int wantInStock);
     Movie(const Movie& movie);
@@ -43,6 +44,8 @@ public:
 
     void addToWaitList(std::string customer);
     std::string removeFromWaitList();
+
+    std::string toString();
 
 
 };
