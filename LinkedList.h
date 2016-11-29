@@ -8,7 +8,6 @@
 #include <stdexcept>
 #include<string>
 
-#include "List.h"
 #include "LinkedNode.h"
 
 
@@ -20,7 +19,7 @@ private:
     int totalLinesRun = 0;
 
     void clearList(LinkedNode<ItemType>* start);
-    int findLast(int itemToFind, LinkedNode<ItemType>* start, int index);
+    int findLast(ItemType itemToFind, LinkedNode<ItemType>* start, int index);
 
 public:
     //creates an empty LinkedList
@@ -76,7 +75,7 @@ public:
     int calcSizeOf();
 };
 
-#include "LinkedList.cpp""
+#include "LinkedList.cpp"
 
 
 #endif //INC_220TERMPROJECT_LINKEDLIST_H

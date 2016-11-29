@@ -7,13 +7,13 @@
 //TODO: ADD COPY CONSTRUCTORS AND ASSIGNMENT OPERATORS ASAP
 
 template <class ItemType>
-LinkedQueue::LinkedQueue(){
+LinkedQueue<ItemType>::LinkedQueue(){
     this->first = nullptr;
     this->last = nullptr;
 }
 
 template <class ItemType>
-LinkedQueue::~LinkedQueue(){
+LinkedQueue<ItemType>::~LinkedQueue(){
     while (first != nullptr) {
         LinkedNode<ItemType> temp = first->getNext();
         delete first;
@@ -24,13 +24,13 @@ LinkedQueue::~LinkedQueue(){
 }
 
 template <class ItemType>
-void LinkedQueue::enqueue(ItemType item){
-    LinkedNode<ItemType>* next = new LinkedNode(item);
+void LinkedQueue<ItemType>::enqueue(ItemType item){
+    LinkedNode<ItemType>* next = new LinkedNode<ItemType>(item);
     last->setNext(next);
 }
 
 template <class ItemType>
-ItemType LinkedQueue::dequeue() {
+ItemType LinkedQueue<ItemType>::dequeue() {
     ItemType item = first->getItem();
     LinkedNode<ItemType> temp = first->getNext();
     delete first;
@@ -39,6 +39,6 @@ ItemType LinkedQueue::dequeue() {
 }
 
 template <class ItemType>
-bool LinkedQueue::isEmpty(){
+bool LinkedQueue<ItemType>::isEmpty(){
     return first == nullptr;
 }

@@ -1,6 +1,10 @@
 #include <iostream>
+#include "Stock.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    Stock* stock = new Stock();
+    stock->addToInventory();
+    stock->addToInventory();
+    stock->printInventory();
+    delete stock;
 }

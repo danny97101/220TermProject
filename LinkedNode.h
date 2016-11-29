@@ -14,28 +14,28 @@ private:
     LinkedNode<ItemType>* next;
 
 public:
-    template<class ItemType>
+    //template<class ItemType>
     LinkedNode<ItemType>(ItemType item){
         this->item = item;
         next = nullptr;
     }
 
-    template<class ItemType>
+    //template<class ItemType>
     ItemType getItem(){
         return item;
     }
 
-    template<class ItemType>
+    //template<class ItemType>
     LinkedNode<ItemType>* getNext(){
         return next;
     }
 
-    template<class ItemType>
+    //template<class ItemType>
     void setItem(ItemType newItem){
         item = newItem;
     }
 
-    template<class ItemType>
+    //template<class ItemType>
     void setNext(LinkedNode<ItemType>* newNext){
         next = newNext;
     }

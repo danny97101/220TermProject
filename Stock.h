@@ -20,6 +20,9 @@ public:
     LinkedList<Movie>* getInventory();
 
     void addToInventory(Movie& movie);
+    void addToInventory();
+
+    void printInventory();
 
     void createOrder();
     void getDelivery();

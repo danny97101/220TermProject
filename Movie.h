@@ -6,6 +6,7 @@
 #define INC_220TERMPROJECT_MOVIE_H
 
 #include "Queue.h"
+#include <iostream>
 
 class Movie {
 
@@ -18,8 +19,9 @@ private:
     Queue<std::string>* waitList;
 
 public:
+    Movie();
     Movie(std::string title, double price, int year, int inStock, int wantInStock);
-    Movie(Movie movie);
+    Movie(const Movie& movie);
     ~Movie();
 
     void setTitle(std::string title);
