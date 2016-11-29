@@ -5,6 +5,7 @@ int main() {
     Stock* stock = new Stock();
     stock->addToInventory();
     stock->addToInventory();
-    stock->printInventory();
+    stock->addToInventory();
+    stock->createOrder();
     delete stock;
 }

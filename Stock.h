@@ -31,6 +31,8 @@ public:
     void shipReturn();
 
     void sellItem();
+
+    Movie* findMovie(std::string title);
 };
 
 #endif //INC_220TERMPROJECT_STOCK_H

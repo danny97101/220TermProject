@@ -40,7 +40,7 @@ public:
 
     //returns a copy of the item at index
     //if the index is invalid, throws an out_of_range exception
-    ItemType get(int index);
+    ItemType& get(int index);
 
     //removes the item at index from the list, then returns a copy of that item
     //if the index is invalid, throws an out_of_range exception

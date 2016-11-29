@@ -97,4 +97,8 @@ std::string Movie::removeFromWaitList() {
     return this->waitList->dequeue();
 }
 
+void Movie::addToStock(int amount) {
+    setInStock(getInStock() + amount);
+}
+
 

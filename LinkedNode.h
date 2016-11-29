@@ -21,7 +21,7 @@ public:
     }
 
     //template<class ItemType>
-    ItemType getItem(){
+    ItemType& getItem(){
         return item;
     }
 

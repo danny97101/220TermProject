@@ -31,6 +31,7 @@ public:
     void setYear(int year);
     void setInStock(int inStock);
     void setWantInStock(int wantInStock);
+    void addToStock(int amount);
 
     std::string getTitle();
     double getPrice();

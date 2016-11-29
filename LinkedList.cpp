@@ -91,7 +91,7 @@ void LinkedList<ItemType>::add(ItemType itemToAdd, int index) {
 }
 
 template <class ItemType>
-ItemType LinkedList<ItemType>::get(int index) {
+ItemType& LinkedList<ItemType>::get(int index) {
     totalLinesRun+=5;
     if (index < 0) {
         totalLinesRun++;
