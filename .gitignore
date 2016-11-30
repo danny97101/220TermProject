@@ -1,0 +1,6 @@
+.gitignore
+/.idea/misc.xml
+/.idea/220TermProject.iml
+/.idea/*
+.idea/modules.xml
+.idea/workspace.xml
