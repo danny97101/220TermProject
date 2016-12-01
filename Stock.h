@@ -25,11 +25,11 @@ public:
 
     void printInventory();
 
-    void createOrder();
-    void getDelivery();
+    void createOrder(std::string filename);
+    void getDelivery(std::string filename);
 
-    void createReturn();
-    void shipReturn();
+    void createReturn(std::string filename);
+    void shipReturn(std::string filename);
 
     void sellItem(std::string title);
 

@@ -5,23 +5,21 @@
 #ifndef INC_220TERMPROJECT_COMMANDLINE_H
 #define INC_220TERMPROJECT_COMMANDLINE_H
 
+#include <string>
+#include "Stock.h"
 
-class CommandLine {
-private:
-    static Stock* stock = new Stock();
-public:
-    static void run();
-    static void help();
-    static void inquire(std::string title);
-    static void list();
-    static void add(std::string title);
-    static void modify(std::string title);
-    static void sell(std::string title);
-    static void order(std::string filename);
-    static void delivery(std::string filename);
-    static void returnStock(std::string filename);
-    static void quit();
-};
+void run();
+void help();
+void inquire(std::string title, Stock* stock);
+void list(Stock* stock);
+void add(std::string title, Stock* stock);
+void modify(std::string title, Stock* stock);
+void sell(std::string title, Stock* stock);
+void order(std::string filename, Stock* stock);
+void delivery(std::string filename, Stock* stock);
+void returnStock(std::string filename, Stock* stock);
+void quit();
+
 
 
 #endif //INC_220TERMPROJECT_COMMANDLINE_H

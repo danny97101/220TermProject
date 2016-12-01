@@ -27,7 +27,7 @@ LinkedList<ItemType>::~LinkedList() {
 }
 
 template <class ItemType>
-void LinkedList<ItemType>::addToEnd(ItemType itemToAdd) {
+void LinkedList<ItemType>::addToEnd(ItemType& itemToAdd) {
     totalLinesRun+=2;
     LinkedNode<ItemType>* newNode = new LinkedNode<ItemType>(itemToAdd);
     if (isEmpty()) {
@@ -47,7 +47,7 @@ void LinkedList<ItemType>::addToEnd(ItemType itemToAdd) {
 }
 
 template <class ItemType>
-void LinkedList<ItemType>::addToFront(ItemType itemToAdd) {
+void LinkedList<ItemType>::addToFront(ItemType& itemToAdd) {
     totalLinesRun+=4;
     LinkedNode<ItemType>* newNode = new LinkedNode<ItemType>(itemToAdd);
     newNode->setNext(start);
@@ -60,7 +60,7 @@ void LinkedList<ItemType>::addToFront(ItemType itemToAdd) {
 }
 
 template <class ItemType>
-void LinkedList<ItemType>::add(ItemType itemToAdd, int index) {
+void LinkedList<ItemType>::add(ItemType& itemToAdd, int index) {
     totalLinesRun+=4;
     if (index < 0) {
         totalLinesRun++;
@@ -212,7 +212,7 @@ void LinkedList<ItemType>::clearList() {
 }
 
 template <class ItemType>
-int LinkedList<ItemType>::find(ItemType itemToFind) {
+int LinkedList<ItemType>::find(ItemType& itemToFind) {
     totalLinesRun+=3;
     LinkedNode<ItemType>* current = start;
     int index = 0;
@@ -231,7 +231,7 @@ int LinkedList<ItemType>::find(ItemType itemToFind) {
 }
 
 template <class ItemType>
-int LinkedList<ItemType>::findLast(ItemType itemToFind, LinkedNode<ItemType>* start, int index) {
+int LinkedList<ItemType>::findLast(ItemType& itemToFind, LinkedNode<ItemType>* start, int index) {
     totalLinesRun++;
     if (start == nullptr) {
         totalLinesRun++;
@@ -252,7 +252,7 @@ int LinkedList<ItemType>::findLast(ItemType itemToFind, LinkedNode<ItemType>* st
 }
 
 template <class ItemType>
-int LinkedList<ItemType>::findLast(ItemType itemToFind) {
+int LinkedList<ItemType>::findLast(ItemType& itemToFind) {
     totalLinesRun++;
     return findLast(itemToFind, start, 0);
 }

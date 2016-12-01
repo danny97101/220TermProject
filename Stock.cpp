@@ -54,15 +54,15 @@ void Stock::addToInventory() {
 void Stock::printInventory() {
     std::cout << "Current Inventory: " << std::endl;
     for (int i = 0; i < inventory->size(); i++) {
-        std::cout << inventory->get(i).getTitle() << std::endl;
+        std::cout << inventory->get(i).toString() << std::endl;
     }
 }
 
-void Stock::createOrder() {
-    std::ofstream outputFile("order.txt"); //TODO: test this eventually
+void Stock::createOrder(std::string filename) {
+    std::ofstream outputFile(filename); //TODO: test this eventually
     if (outputFile.is_open()) {
     for (int i = 0; i < inventory->size(); i++) {
-        Movie current = inventory->get(i);
+        Movie& current = inventory->get(i);
         int needed = current.getNeeded();
         if (needed > 0) {
         outputFile << current.getTitle() << std::endl << std::to_string(needed) << std::endl;
@@ -70,11 +70,12 @@ void Stock::createOrder() {
     }
         outputFile.close();
     }
+    std::cout << "Written to " << filename << std::endl;
 
 }
 
-void Stock::getDelivery() {
-    std::ifstream input("order.txt");
+void Stock::getDelivery(std::string filename) {
+    std::ifstream input(filename);
     std::string line;
     Movie* movie = nullptr;
     if (input.is_open()) {
@@ -88,17 +89,18 @@ void Stock::getDelivery() {
             } else {
                 movie->addToStock(std::stoi(line));
             }
+            count++;
         }
         input.close();
     }
 
 }
 
-void Stock::createReturn() {
-    std::ofstream outputFile("return.txt"); //TODO: test this eventually
+void Stock::createReturn(std::string filename) {
+    std::ofstream outputFile(filename); //TODO: test this eventually
     if (outputFile.is_open()) {
         for (int i = 0; i < inventory->size(); i++) {
-            Movie current = inventory->get(i);
+            Movie& current = inventory->get(i);
             int needed = current.getNeeded();
             if (needed < 0) {
                 outputFile << current.getTitle() << std::endl << std::to_string(needed) << std::endl;
@@ -109,8 +111,8 @@ void Stock::createReturn() {
 
 }
 
-void Stock::shipReturn() {
-    std::ifstream input("return.txt");
+void Stock::shipReturn(std::string filename) {
+    std::ifstream input(filename);
     std::string line;
     Movie* movie = nullptr;
     if (input.is_open()) {
@@ -124,6 +126,7 @@ void Stock::shipReturn() {
             } else {
                 movie->addToStock(std::stoi(line)); //TODO: error checking don't let instock be less than 0
             }
+            count++;
         }
         input.close();
     }
@@ -132,7 +135,7 @@ void Stock::shipReturn() {
 
 Movie* Stock::findMovie(std::string title) {
     for (int i = 0; i < inventory->size(); i++) { //TODO: binary search
-        Movie current = inventory->get(i);
+        Movie& current = inventory->get(i);
         if (current.getTitle() == title) {
             return &current;
         }
@@ -146,4 +149,22 @@ void Stock::sellItem(std::string title) {
     if (movie != nullptr && movie->getInStock() > 0) {
         movie->addToStock(-1);
     }
+}
+
+void Stock::addToInventory(std::string title){
+    int year;
+    int wantInStock;
+    double price;
+    int inStock;
+    std::cout << "What year is " << title << " from? ";
+    std::cin >> year;
+    std::cout << "How many do you have in stock? ";
+    std::cin >> inStock;
+    std::cout << "How many do you want in stock? ";
+    std::cin >> wantInStock;
+    std::cout << "What is the price? ";
+    std::cin >> price;
+    Movie* movie = new Movie(title, price, year, inStock, wantInStock);
+    addToInventory(*movie);
+
 }

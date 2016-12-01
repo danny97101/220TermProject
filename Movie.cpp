@@ -17,6 +17,7 @@ Movie::Movie() {
 Movie::Movie(std::string title, double price, int year, int inStock, int wantInStock) {
     this->title = title;
     this->year = year;
+    this->price = price;
     this->inStock = inStock;
     this->wantInStock = wantInStock;
     this->waitList = new LinkedQueue<std::string>();

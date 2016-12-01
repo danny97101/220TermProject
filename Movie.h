@@ -19,7 +19,6 @@ private:
     LinkedQueue<std::string>* waitList;
 
 public:
-    static const double DEFAULT_PRICE = 10.99;
     Movie();
     Movie(std::string title, double price, int year, int inStock, int wantInStock);
     Movie(const Movie& movie);
