@@ -38,6 +38,7 @@ public:
     int getYear();
     int getInStock();
     int getWantInStock();
+    LinkedQueue<std::string>* getWaitList();
 
     int getNeeded();
 

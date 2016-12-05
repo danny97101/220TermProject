@@ -1,9 +1,11 @@
 #include <iostream>
 
 #include "CommandLine.h"
+#include "TestSuite.h"
 
 int main() {
-    run();
+    runTests();
+    //run();
 
 
 }

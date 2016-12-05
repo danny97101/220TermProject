@@ -29,11 +29,13 @@ Movie::Movie(const Movie& movie) {
     this->year = movie.year;
     this->inStock = movie.inStock;
     this->wantInStock = movie.wantInStock;
-    this->waitList = movie.waitList; //MAKE SURE WE OVERLOAD ASSIGNMENT OPERATOR AND COPY CONSTRUCTOR
+    this->waitList = new LinkedQueue<std::string>(*movie.waitList); //MAKE SURE WE OVERLOAD ASSIGNMENT OPERATOR AND COPY CONSTRUCTOR
 }
 
 Movie::~Movie() {
-    delete waitList;
+    if (waitList != nullptr ) {
+        delete waitList;
+    }
     waitList = nullptr;
 }
 
@@ -104,6 +106,10 @@ void Movie::addToStock(int amount) {
 std::string Movie::toString() {
     std::string str = getTitle() + ", " + std::to_string(getYear()) + ", $" + std::to_string(getPrice()) + ", " + std::to_string(getInStock()) + " in stock, " + std::to_string(getWantInStock()) + " desired in stock."; //TODO: add waitlist
     return str;
+}
+
+LinkedQueue<std::string>* Movie::getWaitList() {
+    return waitList;
 }
 
 

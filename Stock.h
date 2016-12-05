@@ -19,7 +19,7 @@ public:
 
     LinkedList<Movie>* getInventory();
 
-    void addToInventory(Movie& movie);
+    void addToInventory(Movie movie);
     void addToInventory();
     void addToInventory(std::string title); //TODO
 
