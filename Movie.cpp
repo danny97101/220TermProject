@@ -29,7 +29,28 @@ Movie::Movie(const Movie& movie) {
     this->year = movie.year;
     this->inStock = movie.inStock;
     this->wantInStock = movie.wantInStock;
-    this->waitList = new LinkedQueue<std::string>(*movie.waitList); //MAKE SURE WE OVERLOAD ASSIGNMENT OPERATOR AND COPY CONSTRUCTOR
+
+    this->waitList = new LinkedQueue<std::string>(*(movie.waitList)); //MAKE SURE WE OVERLOAD ASSIGNMENT OPERATOR AND COPY CONSTRUCTOR
+}
+
+Movie& Movie::operator=(Movie movie) {
+    if (this != &movie) {
+        //delete current
+        if (waitList != nullptr ) {
+            delete waitList;
+        }
+        waitList = nullptr;
+
+        //new values
+        this->title = movie.title;
+        this->price = movie.price;
+        this->year = movie.year;
+        this->inStock = movie.inStock;
+        this->wantInStock = movie.wantInStock;
+
+        this->waitList = new LinkedQueue<std::string>(*(movie.waitList)); //MAKE SURE WE OVERLOAD ASSIGNMENT OPERATOR AND COPY CONSTRUCTOR
+    }
+    return *this;
 }
 
 Movie::~Movie() {

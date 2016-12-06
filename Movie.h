@@ -22,6 +22,7 @@ public:
     Movie();
     Movie(std::string title, double price, int year, int inStock, int wantInStock);
     Movie(const Movie& movie);
+    Movie& operator=(Movie toCopy);
     ~Movie();
 
     void setTitle(std::string title);

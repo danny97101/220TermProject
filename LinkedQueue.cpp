@@ -80,7 +80,39 @@ LinkedQueue<ItemType>::LinkedQueue(const LinkedQueue<ItemType>& queue) {
 }
 
 template <class ItemType>
-LinkedQueue<ItemType>& LinkedQueue<ItemType>::operator=(LinkedQueue<ItemType> toCopy) {
-    LinkedQueue<ItemType>* copy = new LinkedQueue(toCopy);
-    return copy;
+    LinkedQueue<ItemType>& LinkedQueue<ItemType>::operator=(LinkedQueue<ItemType> queue) {
+    if (&queue != this) {
+        //delete current info
+        if (first != nullptr) {
+            if (first == last) { //list of one thing. need other case b/c the loop would go on forever
+                delete first;
+            } else {
+                while (first != nullptr) {
+                    LinkedNode<ItemType> *temp = first->getNext();
+                    delete first;
+                    first = temp;
+                }
+            }
+        }
+
+        first = nullptr;
+        last = nullptr;
+
+        //set things equal
+        if (queue.first != nullptr) {
+            this->first = new LinkedNode<ItemType>(*queue.first);
+            this->last = this->first;
+            LinkedNode<ItemType>* current = queue.first;
+            LinkedNode<ItemType>* currentInThis = first;
+            while (current->getNext() != nullptr) {
+                current = current->getNext();
+                currentInThis->setNext(new LinkedNode<ItemType>(current->getItem()));
+                currentInThis = currentInThis->getNext();
+            }
+        } else {
+            this->first = nullptr;
+            this->last = nullptr;
+        }
+    }
+    return *this;
 }

@@ -475,7 +475,7 @@ void StockTestShipReturn() {
     Movie movie3 = Movie("another movie2", 2, 2, 10, 2);
     stock.addToInventory(movie3);
     stock.createReturn("testReturn.txt");
-    stock.getDelivery("testReturn.txt");
+    stock.shipReturn("testReturn.txt");
     LinkedList<Movie>* inventory = stock.getInventory();
     for (int i = 0; i < inventory->size(); i++) {
         if (inventory->get(i).getNeeded() < 0) {
@@ -483,13 +483,14 @@ void StockTestShipReturn() {
         }
     }
 
-    printPassFail("getDelivery", passes);
+    printPassFail("shipReturn", passes);
 }
 
 void StockTestSellItem() {
     bool passes = true;
     Stock stock = Stock();
     Movie movie = Movie("bee movie", 20, 2006, 1, 10000);
+    stock.addToInventory(movie);
     stock.sellItem("bee movie");
     if (stock.findMovie("bee movie")->getInStock() != 0) { //has stock
         passes = false;
@@ -504,6 +505,7 @@ void StockTestFindMovie() {
     bool passes = true;
     Stock stock = Stock();
     Movie movie = Movie("bee movie", 20, 2006, 1, 10000);
+    stock.addToInventory(movie);
     if (stock.findMovie("bee movie")->getTitle() != "bee movie") { //if the movie exists
         passes = false;
     }
