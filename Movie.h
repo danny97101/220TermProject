@@ -41,6 +41,8 @@ public:
     int getWantInStock();
     LinkedQueue<std::string>* getWaitList();
 
+    bool operator==(Movie& other);
+
     int getNeeded();
 
     void addToWaitList(std::string customer);

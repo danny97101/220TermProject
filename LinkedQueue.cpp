@@ -2,7 +2,9 @@
 // Created by Toby Dragon on 10/24/16.
 //
 
+#include "Queue.h"
 #include "LinkedQueue.h"
+
 
 //TODO: ADD COPY CONSTRUCTORS AND ASSIGNMENT OPERATORS ASAP
 

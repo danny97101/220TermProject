@@ -6,7 +6,7 @@
 #define INC_220TERMPROJECT_QUEUE_H
 
 template <class ItemType>
-class Queue{
+class Queue {
 
 public:
     virtual ~Queue(){}
