@@ -22,7 +22,7 @@ void run() {
             inquire(command.substr(2), stock);
         } else if (command == "L") {
             list(stock);
-        } else if (command[0] == 'A') {
+        } else if (command[0] == 'A' && command[1] == ' ') {
             add(command.substr(2), stock);
         } else if (command[0] == 'M') {
             modify(command.substr(2), stock);
@@ -67,7 +67,7 @@ void help() {
 void inquire(std::string title, Stock* stock) {
     Movie* movie = stock->findMovie(title);
     if (movie == nullptr) {
-        std::cout << "Movie not in inventory.";
+        std::cout << "Movie not in inventory."<<std::endl;
     } else {
         std::cout << movie->toString() << std::endl;
     }
@@ -78,7 +78,15 @@ void list(Stock* stock) {
 }
 
 void add(std::string title, Stock* stock) {
-    stock->addToInventory(title);
+    if (title != ""){
+        stock->addToInventory(title);
+    }
+    else {
+        std::cout<<"Please enter a valid movie title: ";
+        std::string newTitle;
+        std::cin >> newTitle;
+        add(newTitle, stock);
+    }
 }
 
 void modify(std::string title, Stock* stock) {
@@ -87,11 +95,22 @@ void modify(std::string title, Stock* stock) {
         std::cout << "Movie not in inventory.";
     } else {
         std::cout << "Current in stock: " << movie->getInStock() << std::endl;
-        std::cout << "Curent wanted in stock: " << movie->getWantInStock() << std::endl;
-        std::cout << "Desired new amount wanted in stock: ";
-        int wanted;
-        std::cin >> wanted;
-        movie->setWantInStock(wanted);
+        std::cout << "Current wanted in stock: " << movie->getWantInStock() << std::endl;
+        int* goodVal = nullptr;
+        while (goodVal == nullptr){
+            std::cout << "Desired new amount wanted in stock: ";
+            std::string wanted;
+            std::cin >> wanted;
+            try {
+                std::stoi(wanted);
+                goodVal = new int(std::stoi(wanted));
+                movie->setWantInStock(*goodVal);
+            } catch(std::invalid_argument){
+                std::cout<<"Invalid input, please try again"<<std::endl;
+            } catch(std::out_of_range){
+                std::cout<<"Invalid input, please try again"<<std::endl;
+            }
+        }
     }
 }
 

@@ -32,20 +32,76 @@ void Stock::addToInventory() {
     int year;
     int inStock;
     int wantInStock;
+    int* goodVal = nullptr;
 
     std::cout << "Enter Movie Title: ";
-    //TODO: right now can only handle single word titles?
-    getline(std::cin, title);
-    std::cout << "Enter Movie Price: ";
-    std::cin >> price;
-    std::cout << "Enter Movie Year: ";
-    std::cin >> year;
-    std::cout << "Enter Amount In Stock: ";
-    std::cin >> inStock;
-    std::cout << "Enter Amount Wanted In Stock: ";
-    std::cin >> wantInStock;
-
-    std::cin.ignore();
+    std::string titleString;
+    std::cin>>titleString;
+    while (titleString == ""){
+        std::cout<<"Enter Movie Title: ";
+        std::cin>>titleString;
+    }
+    title = titleString;
+    while(goodVal == nullptr){
+        std::cout << "Enter Movie Price: ";
+        std::string priceString;
+        std::cin>>priceString;
+        try {
+            std::stoi(priceString);
+            goodVal = new int(std::stoi(priceString));
+            price = *goodVal;
+        } catch(std::invalid_argument){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        } catch(std::out_of_range){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        }
+    }
+    goodVal = nullptr;
+    while(goodVal == nullptr){
+        std::cout << "Enter Movie Year: ";
+        std::string yearString;
+        std::cin>>yearString;
+        try {
+            std::stoi(yearString);
+            goodVal = new int(std::stoi(yearString));
+            year = *goodVal;
+        } catch(std::invalid_argument){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        } catch(std::out_of_range){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        }
+    }
+    goodVal = nullptr;
+    while(goodVal == nullptr){
+        std::cout << "Enter Amount In Stock: ";
+        std::string inStockString;
+        std::cin>>inStockString;
+        try {
+            std::stoi(inStockString);
+            goodVal = new int(std::stoi(inStockString));
+            inStock = *goodVal;
+        } catch(std::invalid_argument){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        } catch(std::out_of_range){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        }
+    }
+    goodVal = nullptr;
+    while(goodVal == nullptr){
+        std::cout << "Enter Amount Wanted In Stock: ";
+        std::string wantInStockString;
+        std::cin>>wantInStockString;
+        try {
+            std::stoi(wantInStockString);
+            goodVal = new int(std::stoi(wantInStockString));
+            wantInStock = *goodVal;
+        } catch(std::invalid_argument){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        } catch(std::out_of_range){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        }
+    }
+    goodVal = nullptr;
 
     Movie movie = Movie(title, price, year, inStock, wantInStock);
     addToInventory(movie);
@@ -156,14 +212,66 @@ void Stock::addToInventory(std::string title){
     int wantInStock;
     double price;
     int inStock;
-    std::cout << "What year is " << title << " from? ";
-    std::cin >> year;
-    std::cout << "How many do you have in stock? ";
-    std::cin >> inStock;
-    std::cout << "How many do you want in stock? ";
-    std::cin >> wantInStock;
-    std::cout << "What is the price? ";
-    std::cin >> price;
+    int* goodVal = nullptr;
+    while(goodVal == nullptr){
+        std::cout << "What year is " << title << " from? ";
+        std::string yearString;
+        std::cin>>yearString;
+        try {
+            std::stoi(yearString);
+            goodVal = new int(std::stoi(yearString));
+            year = *goodVal;
+        } catch(std::invalid_argument){
+            std::cout<<"Invalid year, please try again"<<std::endl;
+        } catch(std::out_of_range){
+            std::cout<<"Invalid year, please try again"<<std::endl;
+        }
+    }
+    goodVal = nullptr;
+    while(goodVal == nullptr){
+        std::cout << "How many do you have in stock? ";
+        std::string inStockString;
+        std::cin>>inStockString;
+        try {
+            std::stoi(inStockString);
+            goodVal = new int(std::stoi(inStockString));
+            inStock = *goodVal;
+        } catch(std::invalid_argument){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        } catch(std::out_of_range){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        }
+    }
+    goodVal = nullptr;
+    while(goodVal == nullptr){
+        std::cout << "How many do you want in stock? ";
+        std::string wantStockString;
+        std::cin>>wantStockString;
+        try {
+            std::stoi(wantStockString);
+            goodVal = new int(std::stoi(wantStockString));
+            wantInStock = *goodVal;
+        } catch(std::invalid_argument){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        } catch(std::out_of_range){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        }
+    }
+    goodVal = nullptr;
+    while(goodVal == nullptr){
+        std::cout << "What is the price? ";
+        std::string priceString;
+        std::cin>>priceString;
+        try {
+            std::stoi(priceString);
+            goodVal = new int(std::stof(priceString));
+            price = *goodVal;
+        } catch(std::invalid_argument){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        } catch(std::out_of_range){
+            std::cout<<"Invalid input, please try again"<<std::endl;
+        }
+    }
     Movie* movie = new Movie(title, price, year, inStock, wantInStock);
     addToInventory(*movie);
 
