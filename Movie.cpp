@@ -4,7 +4,6 @@
 
 #include <string>
 #include "Movie.h"
-#include "LinkedQueue.h"
 
 Movie::Movie() {
     this->title = "";
@@ -52,6 +51,8 @@ Movie& Movie::operator=(Movie movie) {
     }
     return *this;
 }
+
+bool Movie::operator==(Movie& other){return(this->title == other.title) && (this->price == other.price) && (this->year == other.year) && (this->inStock == other.inStock) && (this->wantInStock == other.wantInStock);}
 
 Movie::~Movie() {
     if (waitList != nullptr ) {

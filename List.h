@@ -22,7 +22,6 @@ public:
     virtual void clearList()=0;
     virtual int find(ItemType& itemToFind)=0;
     virtual int findLast(ItemType& itemToFind)=0;
-    virtual std::string toString()=0;
     virtual long getTotalLinesRun()=0;
     virtual void resetTotalLinesRun()=0;
     virtual int calcSizeOf()=0;

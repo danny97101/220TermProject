@@ -7,12 +7,12 @@
 
 #include <stdexcept>
 #include<string>
-
+#include "List.h"
 #include "LinkedNode.h"
 
 
 template <class ItemType>
-class LinkedList {
+class LinkedList : public List<ItemType> {
 private:
     LinkedNode<ItemType>* start;
     LinkedNode<ItemType>* end;
@@ -60,10 +60,6 @@ public:
 
     //returns the index of the last occurrence of itemToFind in the list, or -1 if not present
     int findLast(ItemType& itemToFind);
-
-    //returns a string representing the given list in the exact format shown below
-    // {1, 2, 3, 4, 5}
-    std::string toString();
 
     //returns the total number of lines run by this object
     long getTotalLinesRun();

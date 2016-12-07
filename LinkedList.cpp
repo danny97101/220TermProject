@@ -124,7 +124,7 @@ ItemType LinkedList<ItemType>::remove(int index) {
     }
 
     LinkedNode<ItemType>* nodeAtIndex = start;
-    int removed;
+    ItemType removed;
     if (index < 0) {
         totalLinesRun++;
         throw std::out_of_range("Invalid index: can't be less than 0");
@@ -255,26 +255,6 @@ template <class ItemType>
 int LinkedList<ItemType>::findLast(ItemType& itemToFind) {
     totalLinesRun++;
     return findLast(itemToFind, start, 0);
-}
-
-template <class ItemType>
-std::string LinkedList<ItemType>::toString() {
-    totalLinesRun+=3;
-    std::string output = "{";
-    LinkedNode<ItemType>* current = start;
-    while (current != nullptr) {
-        totalLinesRun+=2;
-        output += std::to_string(current->getItem());
-        if (current->getNext() != nullptr) {
-            totalLinesRun++;
-            output += ", ";
-        }
-        totalLinesRun+=2;
-        current = current->getNext();
-    }
-    totalLinesRun+=2;
-    output += "}";
-    return output;
 }
 
 template <class ItemType>
