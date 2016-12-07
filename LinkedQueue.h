@@ -17,7 +17,9 @@ private:
 
 public:
     LinkedQueue();
+    LinkedQueue(const LinkedQueue<ItemType>& queue);
     ~LinkedQueue();
+    LinkedQueue<ItemType>& operator=(LinkedQueue<ItemType> toCopy);
 
     void enqueue(ItemType item);
     ItemType dequeue();

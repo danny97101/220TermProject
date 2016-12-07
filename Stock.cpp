@@ -17,7 +17,7 @@ LinkedList<Movie>* Stock::getInventory() {
     return inventory;
 }
 
-void Stock::addToInventory(Movie &movie) {
+void Stock::addToInventory(Movie movie) {
     if (inventory->isEmpty()) {
         inventory->addToEnd(movie);
     } else {
@@ -202,8 +202,18 @@ Movie* Stock::findMovie(std::string title) {
 
 void Stock::sellItem(std::string title) {
     Movie* movie = findMovie(title);
-    if (movie != nullptr && movie->getInStock() > 0) {
-        movie->addToStock(-1);
+    if (movie != nullptr) {
+        if (movie->getInStock() > 0) {
+            movie->addToStock(-1);
+        }
+        else {
+            std::string customer;
+            std::cout << "This movie is out of stock. Please enter your name for the wait list: ";
+            std::cin >> customer;
+            movie->addToWaitList(customer);
+        }
+    } else {
+        std::cout << "This movie doesn't exist." << std::endl;
     }
 }
 
