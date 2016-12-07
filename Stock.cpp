@@ -48,7 +48,7 @@ void Stock::addToInventory() {
         std::cin>>priceString;
         try {
             std::stoi(priceString);
-            goodVal = new int(std::stoi(priceString));
+            goodVal = new int(std::stod(priceString));
             price = *goodVal;
         } catch(std::invalid_argument){
             std::cout<<"Invalid input, please try again"<<std::endl;
@@ -274,7 +274,7 @@ void Stock::addToInventory(std::string title){
         std::cin>>priceString;
         try {
             std::stoi(priceString);
-            goodVal = new int(std::stof(priceString));
+            goodVal = new int(std::stod(priceString));
             price = *goodVal;
         } catch(std::invalid_argument){
             std::cout<<"Invalid input, please try again"<<std::endl;

@@ -4,8 +4,8 @@
 #include "TestSuite.h"
 
 int main() {
-    runTests();
-    //run();
+    //runTests();
+    run();
 
 
 }
