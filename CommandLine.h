@@ -19,7 +19,7 @@ void order(std::string filename, Stock* stock);
 void delivery(std::string filename, Stock* stock);
 void returnStock(std::string filename, Stock* stock);
 void quit();
-
+std::string toLower(std::string title);
 
 
 #endif //INC_220TERMPROJECT_COMMANDLINE_H

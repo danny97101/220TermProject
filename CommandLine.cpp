@@ -135,5 +135,19 @@ void returnStock(std::string filename, Stock* stock){
     stock->createReturn(filename);
     stock->shipReturn(filename);
 }
-void quit(){}
+void quit(){
+    //TODO: Upload inventory to file and make sure that same file is loaded next time the program is run.
+}
+
+std::string toLower(std::string title){
+    std::string toReturn;
+    for (int i = 0; i < title.size(); i++){
+        if (int(title[i]) > 64 && int(title[i]) < 91){
+            toReturn += (int(title[i]) + 32);
+        } else {
+            toReturn += title[i];
+        }
+    }
+    return toReturn;
+}
 

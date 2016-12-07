@@ -3,6 +3,7 @@
 //
 
 #include "Stock.h"
+#include "CommandLine.h"
 #include <fstream>
 
 Stock::Stock() {
@@ -22,8 +23,17 @@ void Stock::addToInventory(Movie movie) {
         inventory->addToEnd(movie);
     } else {
         //TODO: make this do it in alphabetical order.
-        inventory->addToEnd(movie);
+        inventory->add(movie, getIndex(movie.getTitle()));
     }
+}
+
+int Stock::getIndex(std::string title){
+    for (int i = 0; i < inventory->size(); i++){
+        if (toLower(title).compare(toLower(inventory->get(i).getTitle())) < 0){
+            return i;
+        }
+    }
+    return inventory->size();
 }
 
 void Stock::addToInventory() {
@@ -115,7 +125,7 @@ void Stock::printInventory() {
 }
 
 void Stock::createOrder(std::string filename) {
-    std::ofstream outputFile(filename); //TODO: test this eventually
+    std::ofstream outputFile(filename);
     if (outputFile.is_open()) {
     for (int i = 0; i < inventory->size(); i++) {
         Movie& current = inventory->get(i);
@@ -140,7 +150,7 @@ void Stock::getDelivery(std::string filename) {
             if (count%2 == 0) {
                 movie = findMovie(line);
                 if (movie == nullptr) {
-                    //TODO: make new addToInventory that takes string title
+                    addToInventory(line);
                 }
             } else {
                 movie->addToStock(std::stoi(line));
@@ -153,7 +163,7 @@ void Stock::getDelivery(std::string filename) {
 }
 
 void Stock::createReturn(std::string filename) {
-    std::ofstream outputFile(filename); //TODO: test this eventually
+    std::ofstream outputFile(filename);
     if (outputFile.is_open()) {
         for (int i = 0; i < inventory->size(); i++) {
             Movie& current = inventory->get(i);
@@ -166,7 +176,7 @@ void Stock::createReturn(std::string filename) {
     }
 
 }
-
+//
 void Stock::shipReturn(std::string filename) {
     std::ifstream input(filename);
     std::string line;
@@ -177,10 +187,12 @@ void Stock::shipReturn(std::string filename) {
             if (count%2 == 0) {
                 movie = findMovie(line);
                 if (movie == nullptr) {
-                    //TODO: error checking wooooo
+                    std::cout<<"Error: Tried to return more than in stock for "<< line <<std::endl;
                 }
             } else {
-                movie->addToStock(std::stoi(line)); //TODO: error checking don't let instock be less than 0
+                if (movie != nullptr && movie->getInStock()-std::stoi(line)){
+                    movie->addToStock(std::stoi(line));
+                }
             }
             count++;
         }

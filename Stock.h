@@ -13,6 +13,8 @@ class Stock {
 private:
     LinkedList<Movie>* inventory;
 
+    int getIndex(std::string title); //TODO: make binary
+
 public:
     Stock();
     ~Stock();
