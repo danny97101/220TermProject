@@ -18,21 +18,21 @@ void run() {
         }
         if (command == "H") {
             help();
-        } else if (command[0] == 'I') {
+        } else if (command[0] == 'I' && command[1] == ' ') {
             inquire(command.substr(2), stock);
         } else if (command == "L") {
             list(stock);
         } else if (command[0] == 'A' && command[1] == ' ') {
             add(command.substr(2), stock);
-        } else if (command[0] == 'M') {
+        } else if (command[0] == 'M' && command[1] == ' ') {
             modify(command.substr(2), stock);
-        } else if (command[0] == 'S') {
+        } else if (command[0] == 'S' && command[1] == ' ') {
             sell(command.substr(2), stock);
-        } else if (command[0] == 'O') {
+        } else if (command[0] == 'O' && command[1] == ' ') {
             order(command.substr(2), stock);
-        } else if (command[0] == 'D') {
+        } else if (command[0] == 'D' && command[1] == ' ') {
             delivery(command.substr(2), stock);
-        } else if (command[0] == 'R') {
+        } else if (command[0] == 'R' && command[1] == ' ') {
             returnStock(command.substr(2), stock);
         } else if (command == "Q") {
             quit(stock);
@@ -90,6 +90,10 @@ void add(std::string title, Stock* stock) {
 }
 
 void modify(std::string title, Stock* stock) {
+    while(title == ""){
+        std::cout<<"Please enter a movie title: ";
+        std::cin>> title;
+    }
     Movie* movie = stock->findMovie(title);
     if (movie == nullptr) {
         std::cout << "Movie not in inventory.";
