@@ -23,7 +23,6 @@ void Stock::addToInventory(Movie movie) {
     if (inventory->isEmpty()) {
         inventory->addToEnd(movie);
     } else {
-        //TODO: make this do it in alphabetical order.
         inventory->add(movie, getIndex(movie.getTitle()));
     }
 }

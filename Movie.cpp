@@ -126,6 +126,19 @@ std::string Movie::removeFromWaitList() {
 
 void Movie::addToStock(int amount) {
     setInStock(getInStock() + amount);
+    while (true) {
+        try {
+            if (inStock == 0) {
+                break;
+            }
+            std::string name = waitList->dequeue();
+            setInStock(getInStock() - 1);
+            std::cout << name << " was taken off the waitlist for " << getTitle() << ". Current stock is now: " << std::to_string(getInStock())  << std::endl;
+
+        } catch (std::out_of_range) {
+            break;
+        }
+    }
 }
 
 std::string Movie::toString() {
