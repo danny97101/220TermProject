@@ -17,6 +17,7 @@ private:
 
 public:
     Stock();
+    Stock(std::string filename);
     ~Stock();
 
     LinkedList<Movie>* getInventory();
@@ -36,6 +37,8 @@ public:
     void sellItem(std::string title);
 
     Movie* findMovie(std::string title);
+
+    void saveInventory(std::string filename);
 };
 
 #endif //INC_220TERMPROJECT_STOCK_H

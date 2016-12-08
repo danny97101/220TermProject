@@ -114,6 +114,9 @@ int Movie::getNeeded() {
 }
 
 void Movie::addToWaitList(std::string customer) {
+    if (this->waitList == nullptr) {
+        this->waitList = new LinkedQueue<std::string>();
+    }
     this->waitList->enqueue(customer);
 }
 
@@ -134,4 +137,24 @@ LinkedQueue<std::string>* Movie::getWaitList() {
     return waitList;
 }
 
+std::string Movie::toStringForQuit() {
+    std::string str = getTitle() + "\n" +
+            std::to_string(getYear()) + "\n" +
+            std::to_string(getPrice()) + "\n" +
+            std::to_string(getInStock()) + "\n" +
+            std::to_string(getWantInStock()) + "\n";
+    while (true) {
+        try {
+            str += waitList->dequeue() + "|";
+        } catch (std::out_of_range) {
+            break;
+        }
+    }
+    str += "\n";
+    return str;
+}
+
+void Movie::setWaitList(LinkedQueue<std::string>* queue) {
+    this->waitList = queue;
+}
 

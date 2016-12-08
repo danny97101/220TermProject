@@ -33,6 +33,7 @@ public:
     void setInStock(int inStock);
     void setWantInStock(int wantInStock);
     void addToStock(int amount);
+    void setWaitList(LinkedQueue<std::string>* queue);
 
     std::string getTitle();
     double getPrice();
@@ -49,7 +50,7 @@ public:
     std::string removeFromWaitList();
 
     std::string toString();
-
+    std::string toStringForQuit();
 
 };
 

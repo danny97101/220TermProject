@@ -18,7 +18,7 @@ void sell(std::string title, Stock* stock);
 void order(std::string filename, Stock* stock);
 void delivery(std::string filename, Stock* stock);
 void returnStock(std::string filename, Stock* stock);
-void quit();
+void quit(Stock* stock);
 std::string toLower(std::string title);
 
 

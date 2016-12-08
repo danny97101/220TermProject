@@ -8,7 +8,7 @@
 
 
 void run() {
-    Stock* stock = new Stock();
+    Stock* stock = new Stock("inventory.txt");
     while (true) {
         std::string command;
         std::cout << "Please enter a command (or H for help): ";
@@ -35,7 +35,7 @@ void run() {
         } else if (command[0] == 'R') {
             returnStock(command.substr(2), stock);
         } else if (command == "Q") {
-            quit();
+            quit(stock);
             delete stock;
             stock = nullptr;
             return;
@@ -117,12 +117,10 @@ void modify(std::string title, Stock* stock) {
 void sell(std::string title, Stock* stock) {
     Movie* movie = stock->findMovie(title);
     if (movie == nullptr) {
-        movie = new Movie(title, 10.99, 2016, 0, 1); //TODO: year prompt maybe?
+        movie = new Movie(title, 10.99, 2016, 0, 1);
         stock->addToInventory(*movie);
-        //TODO: add to the waitlist
-    } else {
-        movie->addToStock(-1);
     }
+    stock->sellItem(title);
 }
 
 void order(std::string filename, Stock* stock){
@@ -135,8 +133,8 @@ void returnStock(std::string filename, Stock* stock){
     stock->createReturn(filename);
     stock->shipReturn(filename);
 }
-void quit(){
-    //TODO: Upload inventory to file and make sure that same file is loaded next time the program is run.
+void quit(Stock* stock){
+    stock->saveInventory("inventory.txt");
 }
 
 std::string toLower(std::string title){

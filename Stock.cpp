@@ -5,6 +5,7 @@
 #include "Stock.h"
 #include "CommandLine.h"
 #include <fstream>
+#include <sstream>
 
 Stock::Stock() {
     this->inventory = new LinkedList<Movie>();
@@ -297,4 +298,47 @@ void Stock::addToInventory(std::string title){
     Movie* movie = new Movie(title, price, year, inStock, wantInStock);
     addToInventory(*movie);
 
+}
+
+void Stock::saveInventory(std::string filename) {
+    std::ofstream outputFile(filename);
+    if (outputFile.is_open()) {
+        for (int i = 0; i < inventory->size(); i++) {
+            Movie &current = inventory->get(i);
+            outputFile << current.toStringForQuit();
+        }
+        outputFile.close();
+    }
+}
+
+Stock::Stock(std::string filename) {
+    std::ifstream input(filename);
+    std::string line;
+    Movie* movie = nullptr;
+    this->inventory = new LinkedList<Movie>();
+    if (input.is_open()) {
+        int count = 0;
+        while (getline(input, line)) {
+            if (count % 6 == 0) {
+                movie = new Movie();
+                movie->setTitle(line);
+            }
+            else if (count % 6 == 1) {movie->setYear(std::stoi(line));}
+            else if (count % 6 == 2) {movie->setPrice(std::stod(line));}
+            else if (count % 6 == 3) {movie->setInStock(std::stoi(line));}
+            else if (count % 6 == 4) {movie->setWantInStock(std::stoi(line));}
+            else {
+                std::stringstream ss;
+                ss.str(line);
+                std::string item;
+                movie->setWaitList(new LinkedQueue<std::string>());
+                while (std::getline(ss, item, '|')) {
+                    movie->addToWaitList(item);
+                }
+                this->inventory->addToEnd(*movie);
+            }
+            count++;
+        }
+        input.close();
+    }
 }
