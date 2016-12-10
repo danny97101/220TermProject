@@ -383,7 +383,7 @@ void StockTestAddToInventory() {
     }
     Movie movie2 = Movie("another movie", 2, 2, 2, 2);
     stock.addToInventory(movie2);
-    if (stock.getInventory()->get(0).getTitle() != "bee movie" || stock.getInventory()->get(1).getTitle() != "another movie" || stock.getInventory()->size() != 2) { //another entry
+    if (stock.getInventory()->get(1).getTitle() != "bee movie" || stock.getInventory()->get(0).getTitle() != "another movie" || stock.getInventory()->size() != 2) { //another entry
         passes = false;
     }
 
