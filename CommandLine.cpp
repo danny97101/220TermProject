@@ -65,12 +65,20 @@ void help() {
 }
 
 void inquire(std::string title, Stock* stock) {
-    Movie* movie = stock->findMovie(title);
-    if (movie == nullptr) {
-        std::cout << "Movie not in inventory."<<std::endl;
+    if (title != ""){
+        Movie* movie = stock->findMovie(title);
+        if (movie == nullptr) {
+            std::cout << "Movie not in inventory."<<std::endl;
+        } else {
+            std::cout << movie->toString() << std::endl;
+        }
     } else {
-        std::cout << movie->toString() << std::endl;
+        std::cout<<"Please enter a valid movie title: ";
+        std::string newTitle;
+        std::cin>> newTitle;
+        inquire(newTitle, stock);
     }
+
 }
 
 void list(Stock* stock) {
@@ -119,12 +127,20 @@ void modify(std::string title, Stock* stock) {
 }
 
 void sell(std::string title, Stock* stock) {
-    Movie* movie = stock->findMovie(title);
-    if (movie == nullptr) {
-        movie = new Movie(title, 10.99, 2016, 0, 1);
-        stock->addToInventory(*movie);
+    if(title != ""){
+        Movie* movie = stock->findMovie(title);
+        if (movie == nullptr) {
+            movie = new Movie(title, 10.99, 2016, 0, 1);
+            stock->addToInventory(*movie);
+        }
+        stock->sellItem(title);
+    } else {
+        std::cout<<"Please enter a movie title: ";
+        std::string newTitle;
+        std::cin>> newTitle;
+        sell(newTitle, stock);
     }
-    stock->sellItem(title);
+
 }
 
 void order(std::string filename, Stock* stock){
