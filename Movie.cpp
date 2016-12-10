@@ -142,7 +142,11 @@ void Movie::addToStock(int amount) {
 }
 
 std::string Movie::toString() {
-    std::string str = getTitle() + ", " + std::to_string(getYear()) + ", $" + std::to_string(getPrice()) + ", " + std::to_string(getInStock()) + " in stock, " + std::to_string(getWantInStock()) + " desired in stock."; //TODO: add waitlist
+    std::string str = getTitle() + ", " +
+            std::to_string(getYear()) + ", $" +
+            std::to_string(getPrice()) + ", " +
+            std::to_string(getInStock()) + " in stock, " +
+            std::to_string(getWantInStock()) + " desired in stock.";
     return str;
 }
 

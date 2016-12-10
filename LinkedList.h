@@ -1,5 +1,8 @@
 //
 // Created by Daniel Akimchuk on 11/8/16.
+// LinkedList.h
+// This is an implementation of List which uses LinkedNodes for each
+// entry of the List. Implements the ADT List.h. Is a template.
 //
 
 #ifndef INC_220TERMPROJECT_LINKEDLIST_H
@@ -14,11 +17,27 @@
 template <class ItemType>
 class LinkedList : public List<ItemType> {
 private:
+    //A pointer to the first entry of the list.
     LinkedNode<ItemType>* start;
+    //A pointer to the last entry of the list.
     LinkedNode<ItemType>* end;
     int totalLinesRun = 0;
-
+    /**
+     * A recursive function that will empty a lislt from start onwards.
+     * Should only be called via the stub funciton clearList()
+     * @param start The node to start deleting from. Every time
+     * the function is called it will be the next node of the list.
+     */
     void clearList(LinkedNode<ItemType>* start);
+    /**
+     * A recursive function that will return the index of the last occurrence of itemToFind
+     * Should only be called via the stub function findLast(ItemType itemToFind).
+     * @param itemToFind The item that is being searched for
+     * @param start The node to start searching at. Each time this is called,
+     * this node will increment to the next node.
+     * @param index The current last index where the item was found.
+     * @return The index of the last occurrence of itemToFind.
+     */
     int findLast(ItemType& itemToFind, LinkedNode<ItemType>* start, int index);
 
 public:
