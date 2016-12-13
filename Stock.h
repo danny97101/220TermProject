@@ -10,8 +10,7 @@
 #include "Movie.h"
 #include "LinkedList.h"
 
-template <class ItemType>
-class Stock : LinkedList<ItemType>{
+class Stock {
 
 private:
     LinkedList<Movie>* inventory;
