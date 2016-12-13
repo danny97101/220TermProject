@@ -10,7 +10,8 @@
 #include "LinkedQueue.h"
 #include <iostream>
 
-class Movie {
+template <class ItemType>
+class Movie : LinkedQueue<ItemType>{
 
 private:
     std::string title;

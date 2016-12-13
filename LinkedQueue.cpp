@@ -5,9 +5,6 @@
 #include "Queue.h"
 #include "LinkedQueue.h"
 
-
-//TODO: ADD COPY CONSTRUCTORS AND ASSIGNMENT OPERATORS ASAP
-
 template <class ItemType>
 LinkedQueue<ItemType>::LinkedQueue(){
     this->first = nullptr;
